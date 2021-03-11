@@ -1,0 +1,4 @@
+{% extends 'base.html' %}
+{% block content %}
+<img src="{{ url_for('static', filename=imageName) }}" style="margin: auto;display: block;" alt='{{ imageName }}' height="50%" width="50%">
+{% endblock %}

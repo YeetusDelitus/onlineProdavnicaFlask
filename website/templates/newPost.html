@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+    <h3 align="center">New Post</h3>
+    <div class="form-group">
+        <label>Product Name</label>
+        <input type="text" class="form-control" id="productName" name="productName" placeholder="Enter product name">
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <textarea name="desc" id="desc" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label>Cost</label>
+        <input type="number" class="form-control" id="cost" name="cost" placeholder="Enter cost of product">
+    </div>
+    <div class="form-group">
+        <span class="btn btn-outline-primary btn-sm">
+            <label for="image" style="margin-bottom: 0px;">Browse File</label> 
+            <input type="file" style="display: none;" id="image" name="image">
+        </span>
+        <input class="form-control-inline" style="display: inline;" type="text" disabled="disabled" placeholder="Enter product picture" id="imageLabel"></input> 
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
+</form>
+{% endblock %}

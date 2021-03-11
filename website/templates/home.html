@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for product in posts %}
+<div class="card">
+    <div class="card-header bg-primary">
+        <h4 class="card-title" style="color: #fff;float: left;margin-right: 20px;margin-bottom: 0px;">{{product.productName}}</h4>
+        <p style="color: #fff;float: left;padding-top: 5px;">By {{product.userName}}</p>
+        <button type="button" class="close" onClick="deletePost({{ product.productId }})" style="float: right;padding-top: 5px;">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <p style="color: #fff;float: right;padding-top: 5px;padding-right: 10px;">{{product.cost}} din </p>
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{product.desc}}</p>
+        <a href="" onClick="reportPost({{ product.productId }})" class="card-link">Report</a>
+        <a href="/images/<{{ product.productId }}>" class="card-link">View Image</a>
+    </div>
+</div>
+<br>
+{% endfor %}
+{% endblock %}

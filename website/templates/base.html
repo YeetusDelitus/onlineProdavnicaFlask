@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>E-Shop</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container">    
+                    <a class="navbar-brand" href="/">E-Shop</a>
+                    <div class="collapse navbar-collapse" id="navb">
+                        <div class="navbar-nav">
+                            {% if user.is_authenticated %}
+                            <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+                            <a class="nav-item nav-link" id="newPost" href="/new-post">New Post</a>
+                            <a class="nav-item nav-link" id="deleteAccount" href="/login" onClick="deleteAccount({{ user.id }})">Delete Account</a>
+                            {% else %}
+                            <a class="nav-item nav-link" id="login" href="/login">Login</a>
+                            <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if home %}
+                    <form class="form-inline my-2 my-lg-0 ml-auto">
+                        <input class="form-control mr-sm-2" type="text" id="searchBar" placeholder="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="searchBtn" onClick="searchPosts()">Search</button>
+                    </form>
+                    {% endif %}
+                    <button class="navbar-toggler navbar-toggler-right collapsed" style="margin-left: 10px;" type="button" data-toggle="collapse" data-target="#navb" aria-expanded="false">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %} 
+        {% if messages %} 
+            {% for category, message in messages %} 
+                {% if category == 'error' %}
+                    <div class="alert alert-danger alter-dismissable fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% else %}
+                    <div class="alert alert-success alter-dismissable fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <main class="container bg-light">
+            {% block content %}
+            {% endblock %}
+        </main>
+        <script type="text/javascript" src="../static/index.js"></script>
+    </body>
+</html>
+
+

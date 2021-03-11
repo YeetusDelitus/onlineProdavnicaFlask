@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if state == 'wait' %}
+    <h1>Please verify your email</h1>
+{% else %}
+    <h1>Your token has expired</h1>
+{% endif %}
+{% endblock %}
